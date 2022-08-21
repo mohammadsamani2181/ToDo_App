@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #bdbdbd;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.LoginPageController">
+    <children>
+        <AnchorPane layoutX="-11.0" prefHeight="98.0" prefWidth="707.0" style="-fx-background-color: #69f0ae;">
+            <children>
+                <AnchorPane layoutX="4.0" layoutY="-2.0" prefHeight="26.0" prefWidth="707.0" style="-fx-background-color: #2bbd7e;" />
+                <Label alignment="CENTER" layoutX="248.0" layoutY="42.0" prefHeight="35.0" prefWidth="218.0" text="2Do" textFill="#575454">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <MFXTextField fx:id="loginPageUsernameFld" floatMode="BORDER" layoutX="88.0" layoutY="176.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="368.0" promptText="Username" style="-fx-background-color: #cfcfcf;" />
+        <MFXPasswordField fx:id="loginPagePasswordFld" floatMode="BORDER" layoutX="88.0" layoutY="247.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="368.0" promptText="Password" style="-fx-background-color: #cfcfcf;" />
+        <MFXButton fx:id="loginPageBtn" buttonType="RAISED" layoutX="88.0" layoutY="319.0" prefHeight="40.0" prefWidth="160.0" rippleColor="#707070" style="-fx-background-color: #9e9e9e;" text="Login">
+            <effect>
+                <DropShadow blurType="TWO_PASS_BOX" height="89.97" radius="27.2075" spread="0.07" width="20.86" />
+            </effect>
+            <font>
+                <Font size="14.0" />
+            </font>
+        </MFXButton>
+        <Label layoutX="149.0" layoutY="117.0" prefHeight="35.0" prefWidth="160.0" text="Login Page">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="469.0" layoutY="346.0" prefHeight="26.0" prefWidth="154.0" text="Don't have an account ?">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="97.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/icons8-login-64-2.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="48.0" layoutX="42.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/icons8-username-64.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="48.0" layoutX="42.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../assets/icons8-sign-in-form-password-50.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="loginPageCreateAccountBtn" layoutX="619.0" layoutY="349.0" text="Create new" textFill="#980ee2" underline="true">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
