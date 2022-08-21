@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #bdbdbd;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.SignUpPageController">
+    <children>
+        <AnchorPane layoutX="-2.0" prefHeight="74.0" prefWidth="711.0" style="-fx-background-color: #69f0ae;">
+            <children>
+                <AnchorPane prefHeight="26.0" prefWidth="711.0" style="-fx-background-color: #2bbd7e;" />
+                <Label alignment="CENTER" layoutX="246.0" layoutY="32.0" prefHeight="35.0" prefWidth="218.0" text="2Do" textFill="#575454">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <MFXTextField fx:id="signUpPageFirstnameFld" layoutX="25.0" layoutY="136.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="319.0" promptText="Firstname" style="-fx-background-color: #cfcfcf;" />
+        <MFXTextField fx:id="signUpPageLastnameFld" layoutX="364.0" layoutY="136.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="319.0" promptText="Lastname" style="-fx-background-color: #cfcfcf;" />
+        <MFXTextField fx:id="signUpPageUsernameFld" layoutX="22.0" layoutY="280.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="319.0" promptText="Username" style="-fx-background-color: #cfcfcf;" />
+        <MFXPasswordField fx:id="signUpPagePasswordFld" layoutX="361.0" layoutY="280.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="319.0" promptText="Password" style="-fx-background-color: #cfcfcf;" />
+        <MFXTextField fx:id="signUpPageAddressFld" layoutX="25.0" layoutY="188.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="659.0" promptText="Address" style="-fx-background-color: #cfcfcf;" />
+        <MFXCheckbox fx:id="signUpPageMaleBox" layoutX="285.0" layoutY="240.0" selected="true" text="Male">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </MFXCheckbox>
+        <MFXCheckbox fx:id="signUpPageFemaleBox" layoutX="361.0" layoutY="240.0" text="female">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </MFXCheckbox>
+        <MFXButton fx:id="signUpPageSignupBtn" buttonType="RAISED" layoutX="223.0" layoutY="334.0" prefHeight="42.0" prefWidth="264.0" style="-fx-background-color: #9e9e9e;" text="Sign up">
+            <effect>
+                <DropShadow />
+            </effect>
+            <font>
+                <Font size="14.0" />
+            </font>
+        </MFXButton>
+        <Label layoutX="33.0" layoutY="89.0" prefHeight="27.0" prefWidth="362.0" text="Please fill the information :" textFill="#574f4f">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
