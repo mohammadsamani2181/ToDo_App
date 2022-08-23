@@ -1,6 +1,8 @@
 package com.example.todo_app;
 
 
+import com.example.todo_app.database.DBHandler;
+import com.example.todo_app.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -13,8 +15,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginPageController {
+    private DBHandler dbHandler;
 
     @FXML
     private MFXTextField loginPageUsernameFld;
@@ -24,9 +29,6 @@ public class LoginPageController {
 
     @FXML
     private MFXButton loginPageBtn;
-
-    @FXML
-    private MFXButton loginPageSignUpBtn;
 
     @FXML
     private Label loginPageCreateAccountBtn;
@@ -50,5 +52,43 @@ public class LoginPageController {
             stage.showAndWait();
 
         });
+
+        loginPageBtn.setOnAction(e -> {
+            String username = loginPageUsernameFld.getText();
+            String password = loginPagePasswordFld.getText();
+            User user = new User();
+            dbHandler = new DBHandler();
+
+            if (!username.equals("") && !password.equals("") ) {
+                user.setUsername(username);
+                user.setPassword(password);
+                ResultSet resultSet = null;
+
+                try {
+                    resultSet = dbHandler.findUser(user);
+                    if (!resultSet.equals(null)) {
+
+                        while (resultSet.next()) {
+                            user.setId(resultSet.getInt("idusers"));
+                            user.setFirstname(resultSet.getString("firstname"));
+                            user.setLastname(resultSet.getString("lastname"));
+                            user.setGender(resultSet.getString("gender"));
+                            user.setAddress(resultSet.getString("address"));
+                        }
+
+                    }else {
+                        System.out.println("this user isn't available please create new account");
+                    }
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+            }else {
+                System.out.println("you must enter username and password!");
+            }
+        });
+
     }
 }
