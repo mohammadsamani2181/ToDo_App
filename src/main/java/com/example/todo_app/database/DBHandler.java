@@ -1,10 +1,7 @@
 package com.example.todo_app.database;
 import com.example.todo_app.model.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBHandler extends Configs{
     private Connection dbConnection;
@@ -22,8 +19,12 @@ public class DBHandler extends Configs{
     }
 
     public void createNewUser (User user) throws SQLException, ClassNotFoundException {
-        String insert = "INSERT INTO users(firstname, lastname, address, gender, password, username)" +
-                "VALUES(?, ?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO " + Const.USERS_TABLE +
+                "(" + Const.USER_FIRSTNAME + ", " + Const.USER_LASTNAME
+                +", " + Const.USER_ADDRESS +", "+ Const.USER_GENDER +", "
+                + Const.USER_PASSWORD + ", " + Const.USER_USERNAME + ")"
+                + "VALUES(?, ?, ?, ?, ?, ?)";
+
 
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
 
@@ -35,5 +36,21 @@ public class DBHandler extends Configs{
         preparedStatement.setString(6, user.getUsername());
 
         preparedStatement.executeUpdate();
+    }
+
+    public ResultSet findUser (User user) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM " + Const.USERS_TABLE
+                + " WHERE "
+                + Const.USER_USERNAME + "=?"
+                + " AND "
+                + Const.USER_PASSWORD + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        return resultSet;
     }
 }
