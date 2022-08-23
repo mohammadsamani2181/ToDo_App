@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.todo_app.ShowTasksCellController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="101.0" prefWidth="339.0" style="-fx-background-color: #757575;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.ShowTasksCellController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="9.0" prefHeight="84.0" prefWidth="320.0" style="-fx-background-color: #a4a4a4;">
+         <children>
+            <Label layoutX="20.0" layoutY="5.0" prefHeight="23.0" prefWidth="195.0" text="description" textFill="WHITE" />
+            <Label layoutX="42.0" layoutY="32.0" prefHeight="23.0" prefWidth="264.0" text="task" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="2.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/icons8-task-100.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="123.0" layoutY="56.0" prefHeight="18.0" prefWidth="181.0" text="date created" textFill="#0a46ea">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
