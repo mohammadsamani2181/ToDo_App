@@ -39,7 +39,6 @@ public class LoginPageController {
             loginPageCreateAccountBtn.getScene().getWindow().hide();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("signUpPage.fxml"));
-            System.out.println(loader.getLocation());
             try {
                 loader.load();
             } catch (IOException ex) {
@@ -65,6 +64,7 @@ public class LoginPageController {
                 ResultSet resultSet = null;
 
                 try {
+
                     resultSet = dbHandler.findUser(user);
                     if (!resultSet.equals(null)) {
 
@@ -76,6 +76,15 @@ public class LoginPageController {
                             user.setAddress(resultSet.getString("address"));
                         }
 
+                        loginPageBtn.getScene().getWindow().hide();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource("tasksPage.fxml"));
+                        loader.load();
+                        Parent root = loader.getRoot();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.showAndWait();
+
                     }else {
                         System.out.println("this user isn't available please create new account");
                     }
@@ -84,7 +93,11 @@ public class LoginPageController {
                     ex.printStackTrace();
                 } catch (ClassNotFoundException ex) {
                     ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
+
+
             }else {
                 System.out.println("you must enter username and password!");
             }
