@@ -5,10 +5,13 @@
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #cfd8dc;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.TasksPageController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.TasksPageController">
    <children>
       <AnchorPane prefHeight="92.0" prefWidth="700.0" style="-fx-background-color: #1565c0;">
          <children>
@@ -31,7 +34,7 @@
             <Font size="13.0" />
          </font>
       </MFXTextField>
-      <MFXButton fx:id="tasksPageSaveBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="564.0" layoutY="279.0" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #90a4ae;" text="Add">
+      <MFXButton fx:id="tasksPageAddBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="564.0" layoutY="279.0" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #90a4ae;" text="Add">
          <effect>
             <DropShadow />
          </effect>
@@ -44,5 +47,21 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="tasksPageSuccessfullLbl" layoutX="426.0" layoutY="336.0" prefHeight="27.0" prefWidth="180.0" text="your task added successfully" textFill="#6727cd" visible="false">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+         <effect>
+            <Reflection bottomOpacity="0.22" fraction="0.65" topOpacity="0.9" />
+         </effect>
+      </Label>
+      <ImageView fx:id="tasksPageImageView" fitHeight="39.0" fitWidth="35.0" layoutX="378.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <effect>
+            <Reflection />
+         </effect>
+         <image>
+            <Image url="@../../../assets/icons8-checkmark.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
