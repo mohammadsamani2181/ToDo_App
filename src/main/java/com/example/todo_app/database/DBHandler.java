@@ -70,4 +70,16 @@ public class DBHandler extends Configs{
 
         preparedStatement.executeUpdate();
     }
+
+    public ResultSet getTasksByUserId (User user) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM " + Const.TASKS_TABLE +
+                " WHERE " + Const.TASK_IDUSER + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setInt(1, user.getId());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        return  resultSet;
+    }
 }
