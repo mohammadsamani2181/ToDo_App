@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="101.0" prefWidth="339.0" style="-fx-background-color: #757575;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.ShowTasksCellController">
+<AnchorPane fx:id="tasksCellRoot" prefHeight="101.0" prefWidth="339.0" style="-fx-background-color: #757575;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="10.0" layoutY="9.0" prefHeight="84.0" prefWidth="320.0" style="-fx-background-color: #a4a4a4;">
          <children>
