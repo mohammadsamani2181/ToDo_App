@@ -1,4 +1,5 @@
 package com.example.todo_app.database;
+import com.example.todo_app.model.Task;
 import com.example.todo_app.model.User;
 
 import java.sql.*;
@@ -52,5 +53,21 @@ public class DBHandler extends Configs{
         ResultSet resultSet = preparedStatement.executeQuery();
 
         return resultSet;
+    }
+
+    public void addNewTask (Task task) throws SQLException, ClassNotFoundException {
+        String insert = "INSERT INTO " + Const.TASKS_TABLE
+                + "(" + Const.TASK_IDUSER + ", " + Const.TASK_TASK
+                + ", " + Const.TASK_DESCRIPTION + ", " + Const.TASK_DATECREATED + ")"
+                + "VALUES(?, ?, ?, ?)";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+        preparedStatement.setInt(1, task.getIdUser());
+        preparedStatement.setString(2, task.getTask());
+        preparedStatement.setString(3, task.getDescription());
+        preparedStatement.setTimestamp(4, task.getDateCreated());
+
+        preparedStatement.executeUpdate();
     }
 }
