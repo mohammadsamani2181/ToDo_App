@@ -80,6 +80,10 @@ public class LoginPageController {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("tasksPage.fxml"));
                         loader.load();
+
+                        TasksPageController tasksPageController = loader.getController();
+                        tasksPageController.setUser(user);
+
                         Parent root = loader.getRoot();
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
