@@ -2,10 +2,13 @@ package com.example.todo_app;
 
 
 import com.example.todo_app.database.DBHandler;
+import com.example.todo_app.model.Task;
 import com.example.todo_app.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +23,8 @@ import java.sql.SQLException;
 
 public class LoginPageController {
     private DBHandler dbHandler;
+
+    private static User user;
 
     @FXML
     private MFXTextField loginPageUsernameFld;
@@ -55,7 +60,7 @@ public class LoginPageController {
         loginPageBtn.setOnAction(e -> {
             String username = loginPageUsernameFld.getText();
             String password = loginPagePasswordFld.getText();
-            User user = new User();
+            user = new User();
             dbHandler = new DBHandler();
 
             if (!username.equals("") && !password.equals("") ) {
@@ -107,5 +112,9 @@ public class LoginPageController {
             }
         });
 
+    }
+
+    public static User getUser() {
+        return user;
     }
 }
