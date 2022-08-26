@@ -7,6 +7,12 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class SignUpPageController {
@@ -45,6 +51,23 @@ public class SignUpPageController {
         });
     }
 
+    private void showLoginPage() {
+        signUpPageSignupBtn.getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPage.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     private void signUpUser () {
         String firstname = signUpPageFirstnameFld.getText().trim();
         String lastname = signUpPageLastnameFld.getText().trim();
@@ -74,6 +97,8 @@ public class SignUpPageController {
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
             }
+
+            showLoginPage();
 
         }else {
             System.out.println("all the information must are entered");
