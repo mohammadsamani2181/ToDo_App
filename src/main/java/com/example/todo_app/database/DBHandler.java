@@ -55,7 +55,7 @@ public class DBHandler extends Configs{
         return resultSet;
     }
 
-    public void addNewTask (Task task) throws SQLException, ClassNotFoundException {
+    public int addNewTask (Task task) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO " + Const.TASKS_TABLE
                 + "(" + Const.TASK_IDUSER + ", " + Const.TASK_TASK
                 + ", " + Const.TASK_DESCRIPTION + ", " + Const.TASK_DATECREATED + ")"
@@ -69,6 +69,29 @@ public class DBHandler extends Configs{
         preparedStatement.setTimestamp(4, task.getDateCreated());
 
         preparedStatement.executeUpdate();
+
+        return getIdTask(task);
+    }
+
+    private int getIdTask (Task task) throws SQLException, ClassNotFoundException {
+        String query = "SELECT idtasks FROM " + Const.TASKS_TABLE +
+                " WHERE " + Const.TASK_IDUSER + "=?" +
+                " AND " + Const.TASK_DATECREATED + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+
+        preparedStatement.setInt(1, task.getIdUser());
+        preparedStatement.setTimestamp(2, task.getDateCreated());
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        int idTask = 0;
+
+        while (resultSet.next()) {
+            idTask = resultSet.getInt("idtasks");
+        }
+
+        return idTask;
     }
 
     public ResultSet getTasksByUserId (User user) throws SQLException, ClassNotFoundException {
@@ -81,5 +104,16 @@ public class DBHandler extends Configs{
         ResultSet resultSet = preparedStatement.executeQuery();
 
         return  resultSet;
+    }
+
+    public void deleteTask (Task task) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM " + Const.TASKS_TABLE +
+                " WHERE " + Const.TASK_ID + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+
+        preparedStatement.setInt(1, task.getIdTask());
+        preparedStatement.execute();
+        preparedStatement.close();
     }
 }
