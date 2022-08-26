@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todo_app.EditTaskPageController">
+   <children>
+      <AnchorPane prefHeight="75.0" prefWidth="400.0" style="-fx-background-color: #1565c0;">
+         <children>
+            <Label alignment="CENTER" layoutX="136.0" layoutY="30.0" prefHeight="30.0" prefWidth="127.0" text="Edit" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="21.0" prefWidth="400.0" style="-fx-background-color: #003c8f;" />
+         </children>
+      </AnchorPane>
+      <MFXTextField fx:id="editPageTaskFld" layoutX="47.0" layoutY="131.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Task" style="-fx-background-color: #9ea7aa;">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </MFXTextField>
+      <MFXTextField fx:id="editPageDescriptionFld" layoutX="47.0" layoutY="186.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Description" style="-fx-background-color: #9ea7aa;">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </MFXTextField>
+      <MFXButton fx:id="editPageSaveBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="239.0" layoutY="243.0" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #90a4ae;" text="Save">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MFXButton>
+      <Label layoutX="25.0" layoutY="89.0" prefHeight="30.0" prefWidth="198.0" text="Edit Your Task :" textFill="#a20606">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
