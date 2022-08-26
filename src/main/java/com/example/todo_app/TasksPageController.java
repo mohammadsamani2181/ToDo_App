@@ -75,7 +75,8 @@ public class TasksPageController {
 
             try {
 
-                dbHandler.addNewTask(newTask);
+                int idTask = dbHandler.addNewTask(newTask);
+                newTask.setIdTask(idTask);
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -110,6 +111,7 @@ public class TasksPageController {
         while (resultSet.next()) {
             Task newTask = new Task();
 
+            newTask.setIdTask(resultSet.getInt("idtasks"));
             newTask.setTask(resultSet.getString("task"));
             newTask.setDescription(resultSet.getString("description"));
             newTask.setDateCreated(resultSet.getTimestamp("datecreated"));
