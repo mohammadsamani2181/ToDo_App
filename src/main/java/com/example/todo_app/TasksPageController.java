@@ -6,14 +6,11 @@ import com.example.todo_app.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView;
-import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 
 
 import java.sql.ResultSet;
@@ -47,12 +44,9 @@ public class TasksPageController {
     @FXML
     void initialize() {
 
-        user = LoginPageController.getUser();
-
         try {
-            // add all user tasks to the tasks list
 
-            addTasksToTheTasksList();
+            showTasksForTheFirstEnter();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,30 +54,34 @@ public class TasksPageController {
             e.printStackTrace();
         }
 
-        tasksPageListView.setItems(tasks);
-        tasksPageListView.setCellFactory(ShowTasksCellController -> new ShowTasksCellController());
-
         tasksPageAddBtn.setOnAction(e -> {
+            addNewTask();
+        });
+    }
 
-            String task = tasksPageTaskFld.getText().trim();
-            String description = tasksPageDescriptionFld.getText().trim();
-            DBHandler dbHandler;
-            Task newTask;
 
-            if (!task.equals("") && !description.equals("")) {
-                dbHandler = new DBHandler();
-                newTask = new Task(user.getId(), task, description, new Timestamp(System.currentTimeMillis()));
+    private void addNewTask () {
+        String task = tasksPageTaskFld.getText().trim();
+        String description = tasksPageDescriptionFld.getText().trim();
 
-                try {
+        DBHandler dbHandler;
+        Task newTask;
 
-                    dbHandler.addNewTask(newTask);
+        if (!task.equals("") && !description.equals("")) {
+            dbHandler = new DBHandler();
+            newTask = new Task(user.getId(), task, description, new Timestamp(System.currentTimeMillis()));
 
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                }
+            try {
 
+                dbHandler.addNewTask(newTask);
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+            tasks.add(newTask);
 
 //                PauseTransition visiblePause = new PauseTransition(
 //                        Duration.seconds(3)
@@ -95,18 +93,20 @@ public class TasksPageController {
 //                          event -> tasksPageImageView
 //                );
 //                visiblePause.play();
-                
 
-                tasksPageTaskFld.setText("");
-                tasksPageDescriptionFld.setText("");
 
-            }else {
-                System.out.println("you must enter description and task!");
-            }
-        });
+            tasksPageTaskFld.setText("");
+            tasksPageDescriptionFld.setText("");
+
+        }else {
+            System.out.println("you must enter description and task!");
+        }
     }
 
-    private void addTasksToTheTasksList () throws SQLException, ClassNotFoundException {
+
+
+    private void showTasksForTheFirstEnter() throws SQLException, ClassNotFoundException {
+        user = LoginPageController.getUser();
         DBHandler dbHandler = new DBHandler();
         ResultSet resultSet = null;
 
@@ -122,9 +122,9 @@ public class TasksPageController {
 
             tasks.add(newTask);
         }
+
+        tasksPageListView.setItems(tasks);
+        tasksPageListView.setCellFactory(ShowTasksCellController -> new ShowTasksCellController());
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
