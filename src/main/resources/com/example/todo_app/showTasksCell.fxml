@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tasksCellRoot" prefHeight="101.0" prefWidth="339.0" style="-fx-background-color: #757575;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="tasksCellRoot" prefHeight="98.0" prefWidth="331.0" style="-fx-background-color: #757575;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="9.0" prefHeight="84.0" prefWidth="320.0" style="-fx-background-color: #a4a4a4;">
+      <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="84.0" prefWidth="320.0" style="-fx-background-color: #a4a4a4;">
          <children>
             <Label fx:id="tasksCellDescriptionFld" layoutX="20.0" layoutY="5.0" prefHeight="23.0" prefWidth="195.0" text="description" textFill="WHITE" />
             <Label fx:id="tasksCellTaskFld" layoutX="42.0" layoutY="32.0" prefHeight="23.0" prefWidth="264.0" text="task" textFill="WHITE">
@@ -21,7 +21,7 @@
                   <Image url="@../../../assets/icons8-task-100.png" />
                </image>
             </ImageView>
-            <Label fx:id="tasksCellDateCreatedFld" layoutX="123.0" layoutY="56.0" prefHeight="18.0" prefWidth="181.0" text="date created" textFill="#0a46ea">
+            <Label fx:id="tasksCellDateCreatedFld" alignment="CENTER" layoutX="137.0" layoutY="62.0" prefHeight="18.0" prefWidth="181.0" text="date created" textFill="#0a46ea">
                <font>
                   <Font size="10.0" />
                </font>
