@@ -87,7 +87,7 @@ public class LoginPageController {
                     Parent root = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
-                    stage.showAndWait();
+                    stage.show();
 
                 }else {
                     System.out.println("this user isn't available please create new account");
@@ -120,7 +120,7 @@ public class LoginPageController {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
     }
 
     public static User getUser() {
