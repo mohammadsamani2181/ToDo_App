@@ -1,13 +1,16 @@
 package com.example.todo_app;
 
+import com.example.todo_app.database.DBHandler;
 import com.example.todo_app.model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ShowTasksCellController extends ListCell<Task> {
 
@@ -22,6 +25,12 @@ public class ShowTasksCellController extends ListCell<Task> {
 
     @FXML
     private AnchorPane tasksCellRoot;
+
+    @FXML
+    private ImageView tasksCellDeleteIcon;
+
+    @FXML
+    private ImageView tasksCellEditIcon;
 
     private FXMLLoader loader;
 
@@ -55,6 +64,30 @@ public class ShowTasksCellController extends ListCell<Task> {
 
             setText(null);
             setGraphic(tasksCellRoot);
+
+
+            tasksCellDeleteIcon.setOnMouseClicked(e -> {
+                deletTaskFromDataBase(task);
+                deletTaskFromLsit();
+            });
+        }
+    }
+
+    private void deletTaskFromLsit () {
+        getListView().getItems().remove(getItem());
+    }
+
+    private void deletTaskFromDataBase (Task task) {
+        DBHandler dbHandler = new DBHandler();
+
+        try {
+
+            dbHandler.deleteTask(task);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
