@@ -116,4 +116,22 @@ public class DBHandler extends Configs{
         preparedStatement.execute();
         preparedStatement.close();
     }
+
+    public void updateTask (Task oldTask, Task newTask) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE " + Const.TASKS_TABLE +
+                " SET " + Const.TASK_TASK + "=?" +
+                " , " + Const.TASK_DESCRIPTION + "=?" +
+                " , " + Const.TASK_DATECREATED + "=?" +
+                " WHERE " + Const.TASK_ID + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+
+        preparedStatement.setString(1, newTask.getTask());
+        preparedStatement.setString(2, newTask.getDescription());
+        preparedStatement.setTimestamp(3, newTask.getDateCreated());
+        preparedStatement.setInt(4, oldTask.getIdTask());
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
 }
