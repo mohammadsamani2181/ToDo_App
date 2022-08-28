@@ -47,6 +47,9 @@ public class TasksPageController {
     private ImageView tasksPageRefreshBtn;
 
     @FXML
+    private Label tasksPageErrorLbl;
+
+    @FXML
     void initialize() {
 
         try {
@@ -109,7 +112,8 @@ public class TasksPageController {
             invisibleLabelAndImage();
 
         }else {
-            System.out.println("you must enter description and task!");
+            tasksPageErrorLbl.setText("Please enter Task and Description");
+            MakeInvisible.start(tasksPageErrorLbl);
         }
     }
 
