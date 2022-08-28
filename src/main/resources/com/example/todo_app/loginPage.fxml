@@ -34,10 +34,10 @@
         </MFXButton>
         <Label layoutX="88.0" layoutY="119.0" prefHeight="35.0" prefWidth="160.0" text="Login Page" textFill="#eaff00">
             <font>
-                <Font size="18.0" />
+                <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="466.0" layoutY="354.0" prefHeight="26.0" prefWidth="154.0" text="Don't have an account ?" textFill="WHITE">
+        <Label layoutX="467.0" layoutY="360.0" prefHeight="26.0" prefWidth="154.0" text="Don't have an account ?" textFill="WHITE">
             <font>
                 <Font size="14.0" />
             </font>
@@ -52,10 +52,15 @@
                 <Image url="@../../../assets/icons8-sign-in-form-password-50.png" />
             </image>
         </ImageView>
-        <Label fx:id="loginPageCreateAccountBtn" layoutX="616.0" layoutY="357.0" text="Create new" textFill="#980ee2" underline="true">
+        <Label fx:id="loginPageCreateAccountBtn" layoutX="617.0" layoutY="363.0" text="Create new" textFill="#980ee2" underline="true">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
+      <Label fx:id="loginPageErrorLbl" layoutX="255.0" layoutY="325.0" prefHeight="26.0" prefWidth="406.0" textFill="#ed0404">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
