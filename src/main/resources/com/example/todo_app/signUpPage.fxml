@@ -43,7 +43,7 @@
                 <Font size="13.0" />
             </font>
         </MFXCheckbox>
-        <MFXButton fx:id="signUpPageSignupBtn" buttonType="RAISED" layoutX="244.0" layoutY="334.0" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #484848;" text="Sign up" textFill="WHITE">
+        <MFXButton fx:id="signUpPageSignupBtn" buttonType="RAISED" layoutX="26.0" layoutY="338.0" prefHeight="35.0" prefWidth="188.0" style="-fx-background-color: #484848;" text="Sign up" textFill="WHITE">
             <effect>
                 <DropShadow />
             </effect>
@@ -56,5 +56,10 @@
                 <Font size="16.0" />
             </font>
         </Label>
+      <Label fx:id="signUpPageErrorLbl" layoutX="233.0" layoutY="342.0" prefHeight="27.0" prefWidth="304.0" textFill="#ed0404">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
