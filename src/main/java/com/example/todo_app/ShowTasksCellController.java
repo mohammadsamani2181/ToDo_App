@@ -2,15 +2,21 @@ package com.example.todo_app;
 
 import com.example.todo_app.database.DBHandler;
 import com.example.todo_app.model.Task;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class ShowTasksCellController extends ListCell<Task> {
 
@@ -67,17 +73,22 @@ public class ShowTasksCellController extends ListCell<Task> {
 
 
             tasksCellDeleteIcon.setOnMouseClicked(e -> {
-                deletTaskFromDataBase(task);
-                deletTaskFromLsit();
+                deleteTaskFromDataBase(task);
+                deleteTaskFromList();
+            });
+
+            tasksCellEditIcon.setOnMouseClicked(e -> {
+                Task oldTask = getItem();
+                loadAndControlTheEditPage(oldTask);
             });
         }
     }
 
-    private void deletTaskFromLsit () {
+    private void deleteTaskFromList() {
         getListView().getItems().remove(getItem());
     }
 
-    private void deletTaskFromDataBase (Task task) {
+    private void deleteTaskFromDataBase(Task task) {
         DBHandler dbHandler = new DBHandler();
 
         try {
@@ -90,4 +101,57 @@ public class ShowTasksCellController extends ListCell<Task> {
             e.printStackTrace();
         }
     }
+
+    private void loadAndControlTheEditPage(Task oldTask) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("editTaskPage.fxml"));
+        DBHandler dbHandler = new DBHandler();
+
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        EditTaskPageController editTaskPageController = loader.getController();
+        MFXTextField editPageTaskFld = editTaskPageController.getEditPageTaskFld();
+        MFXTextField editPageDescriptionFld = editTaskPageController.getEditPageDescriptionFld();
+
+        editPageTaskFld.setText(getItem().getTask());
+        editPageDescriptionFld.setText(getItem().getDescription());
+
+        editTaskPageController.getEditPageSaveBtn().setOnAction(event -> {
+            String task = editPageTaskFld.getText();
+            String description = editPageDescriptionFld.getText();
+
+            if (!task.equals("") && !description.equals("")) {
+                Task newTask = new Task();
+                newTask.setTask(task);
+                newTask.setDescription(description);
+                newTask.setDateCreated(new Timestamp(System.currentTimeMillis()));
+
+                try {
+
+                    dbHandler.updateTask(oldTask, newTask);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                editPageTaskFld.getScene().getWindow().hide();
+
+            }else {
+                System.out.println("you must enter something");
+            }
+        });
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+
 }
