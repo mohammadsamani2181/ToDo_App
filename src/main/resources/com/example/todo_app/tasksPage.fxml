@@ -24,17 +24,17 @@
       </AnchorPane>
       <AnchorPane prefHeight="27.0" prefWidth="700.0" style="-fx-background-color: #003c8f;" />
       <MFXLegacyListView fx:id="tasksPageListView" depthLevel="LEVEL5" layoutX="8.0" layoutY="98.0" prefHeight="295.0" prefWidth="352.0" />
-      <MFXTextField fx:id="tasksPageTaskFld" layoutX="372.0" layoutY="167.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Task" style="-fx-background-color: #9ea7aa;">
+      <MFXTextField fx:id="tasksPageTaskFld" layoutX="382.0" layoutY="201.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Task" style="-fx-background-color: #9ea7aa;">
          <font>
             <Font size="13.0" />
          </font>
       </MFXTextField>
-      <MFXTextField fx:id="tasksPageDescriptionFld" layoutX="372.0" layoutY="222.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Description" style="-fx-background-color: #9ea7aa;">
+      <MFXTextField fx:id="tasksPageDescriptionFld" layoutX="382.0" layoutY="256.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="302.0" promptText="Description" style="-fx-background-color: #9ea7aa;">
          <font>
             <Font size="13.0" />
          </font>
       </MFXTextField>
-      <MFXButton fx:id="tasksPageAddBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="564.0" layoutY="279.0" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #90a4ae;" text="Add">
+      <MFXButton fx:id="tasksPageAddBtn" buttonType="RAISED" depthLevel="LEVEL5" layoutX="574.0" layoutY="313.0" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #90a4ae;" text="Add">
          <effect>
             <DropShadow />
          </effect>
@@ -42,7 +42,7 @@
             <Font size="14.0" />
          </font>
       </MFXButton>
-      <Label layoutX="372.0" layoutY="105.0" prefHeight="30.0" prefWidth="198.0" text="Add new task from here :" textFill="#a20606">
+      <Label layoutX="371.0" layoutY="150.0" prefHeight="30.0" prefWidth="198.0" text="Add new task from here :" textFill="#a20606">
          <font>
             <Font size="14.0" />
          </font>
@@ -61,6 +61,11 @@
          </effect>
          <image>
             <Image url="@../../../assets/icons8-checkmark.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tasksPageRefreshBtn" fitHeight="35.0" fitWidth="35.0" layoutX="361.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/icons8-refresh-64.png" />
          </image>
       </ImageView>
    </children>
