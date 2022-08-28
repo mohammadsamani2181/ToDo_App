@@ -68,5 +68,10 @@
             <Image url="@../../../assets/icons8-refresh-64.png" />
          </image>
       </ImageView>
+      <Label fx:id="tasksPageErrorLbl" layoutX="387.0" layoutY="349.0" prefHeight="27.0" prefWidth="291.0" textFill="#ed0404">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
