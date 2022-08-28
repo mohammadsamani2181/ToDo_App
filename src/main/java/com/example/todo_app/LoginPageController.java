@@ -2,20 +2,19 @@ package com.example.todo_app;
 
 
 import com.example.todo_app.database.DBHandler;
-import com.example.todo_app.model.Task;
 import com.example.todo_app.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -37,6 +36,9 @@ public class LoginPageController {
 
     @FXML
     private Label loginPageCreateAccountBtn;
+
+    @FXML
+    private Label loginPageErrorLbl;
 
     @FXML
     void initialize() {
@@ -69,7 +71,8 @@ public class LoginPageController {
             try {
 
                 resultSet = dbHandler.findUser(user);
-                if (!resultSet.equals(null)) {
+
+                if (resultSet.isBeforeFirst()) {
 
                     while (resultSet.next()) {
                         user.setId(resultSet.getInt("idusers"));
@@ -90,7 +93,8 @@ public class LoginPageController {
                     stage.show();
 
                 }else {
-                    System.out.println("this user isn't available please create new account");
+                    loginPageErrorLbl.setText("The Username or Password is incorrect. Try again.");
+                    MakeInvisible.start(loginPageErrorLbl);
                 }
 
             } catch (SQLException ex) {
@@ -103,7 +107,8 @@ public class LoginPageController {
 
 
         }else {
-            System.out.println("you must enter username and password!");
+            loginPageErrorLbl.setText("Please enter Username and Password.");
+            MakeInvisible.start(loginPageErrorLbl);
         }
     }
 
