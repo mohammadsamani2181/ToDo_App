@@ -44,11 +44,14 @@ public class TasksPageController {
     private ImageView tasksPageImageView;
 
     @FXML
+    private ImageView tasksPageRefreshBtn;
+
+    @FXML
     void initialize() {
 
         try {
 
-            showTasksForTheFirstEnter();
+            getTasksFromDatabase(tasks);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,6 +61,18 @@ public class TasksPageController {
 
         tasksPageAddBtn.setOnAction(e -> {
             addNewTask();
+        });
+
+        tasksPageRefreshBtn.setOnMouseClicked(e -> {
+            try {
+
+                updateTasks();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
@@ -100,7 +115,7 @@ public class TasksPageController {
 
 
 
-    private void showTasksForTheFirstEnter() throws SQLException, ClassNotFoundException {
+    private void getTasksFromDatabase(ObservableList<Task> tasks) throws SQLException, ClassNotFoundException {
         user = LoginPageController.getUser();
         DBHandler dbHandler = new DBHandler();
         ResultSet resultSet = null;
@@ -140,6 +155,14 @@ public class TasksPageController {
                 event -> tasksPageSuccessfullLbl.setVisible(false)
         );
         visiblePause2.play();
+    }
+
+    private void updateTasks () throws SQLException, ClassNotFoundException {
+        ObservableList<Task> updatedTasks = FXCollections.observableArrayList();
+
+        getTasksFromDatabase(updatedTasks);
+
+        tasks = updatedTasks;
     }
 
 }
