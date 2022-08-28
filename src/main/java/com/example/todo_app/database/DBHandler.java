@@ -126,6 +126,9 @@ public class DBHandler extends Configs{
 
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
 
+        newTask.setIdTask(oldTask.getIdTask());
+        newTask.setIdUser(oldTask.getIdUser());
+
         preparedStatement.setString(1, newTask.getTask());
         preparedStatement.setString(2, newTask.getDescription());
         preparedStatement.setTimestamp(3, newTask.getDateCreated());
